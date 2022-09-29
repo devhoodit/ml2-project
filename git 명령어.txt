@@ -1,9 +1,17 @@
-# 강제 push 전에 반드시 단톡방 전파 후 확인!!!
-# 파일 수정 전에 반드시 pull 하여 충돌 방지할 것!!!
+#######################################################
+##     강제 push 전에 반드시 단톡방 전파 후 확인!!!       ##
+##     파일 수정 전에 반드시 pull, 충돌 방지할 것!!       ##
+##     pull과 push 사이 수정 시간 가급적 짧게!!!         ##
+#######################################################
 
-git pull origin master
 
-git add (파일명)
-git add .
-git commit -m "(설명)"
-git push origin master
+1. PULL
+
+    git pull origin main
+
+2. PUSH
+
+    git init
+    git add .
+    git commit -m "(설명)"
+    git push origin main
