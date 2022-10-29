@@ -4,7 +4,7 @@ import torch.optim as optim
 import torch.nn as nn
 
 from torchmetrics.functional.classification import accuracy
-from ml2.src.datasets import CIFAR10
+from src.datasets import CIFAR10
 from src.engines import Test
 
 from src import utils
