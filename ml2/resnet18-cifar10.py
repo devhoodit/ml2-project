@@ -17,8 +17,11 @@ if __name__ == "__main__":
     parser.add_argument("--title", default="summary1", type=str)
     args = parser.parse_args()
     
+    utils.device_env()
+    
     # base setting
     device = utils.device_setting(args.device)
+    print(f"Torch running on {device}")
     
     # Load dataset with dataloader
     cifar_dataload = datasets.CIFAR10.load_train_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)

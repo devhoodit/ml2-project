@@ -6,7 +6,7 @@ import os
 
 def cuda_available():
     if cuda.is_available():
-        if cuda.device_count != 1: return 'cuda:0'
+        if cuda.device_count() != 1: return 'cuda:0'
         else: return 'cuda'
     else: return 'cpu'
 
