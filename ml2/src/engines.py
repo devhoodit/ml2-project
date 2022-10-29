@@ -62,7 +62,7 @@ class DefaultTrainEvaluate:
 
         return summary
         
-class Summary1(DefaultTrainEvaluate):
+class ResNet18CIFAR10(DefaultTrainEvaluate):
     pass
 
 class Test(DefaultTrainEvaluate):

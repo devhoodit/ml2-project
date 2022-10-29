@@ -1,2 +1,3 @@
 torch
 py-cpuinfo
+torchmetrics

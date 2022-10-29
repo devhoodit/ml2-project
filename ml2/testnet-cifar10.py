@@ -10,7 +10,7 @@ from src import utils
 from src import datasets
 from src.models import TestNet
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="resnet18 with cifar-10")
     utils.arg_setting(parser)
     parser.add_argument("--title", default="testnet-cifar10", type=str)
@@ -44,5 +44,5 @@ if __name__ == "__main__":
         print(f'Epoch: {epoch + 1}, Accuracy: {summary["metric"]:.4f}')
         utils.save_checkpoint(args.checkpoints, args.title, model, optimizer, epoch + 1)
     
-    
-    
+if __name__ == "__main__":
+    main()

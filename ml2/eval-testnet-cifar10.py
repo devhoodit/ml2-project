@@ -8,7 +8,7 @@ from src.models import TestNet
 from src.engines import Test
 from src import utils, datasets
 
-if __name__ == "__main__":
+def main():
     
     parser = argparse.ArgumentParser(description="resnet18 with cifar-10")
     utils.arg_setting(parser)
@@ -38,6 +38,11 @@ if __name__ == "__main__":
     summary = Test.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
     acc = summary['metric']
 
-    print(f'Accuracy: {acc}')
+    print(f'Model: {args.title} Accuracy: {acc}')
+    
+    return acc
+
+if __name__ == "__main__":
+    main()
     
     
