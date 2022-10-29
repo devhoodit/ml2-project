@@ -1,4 +1,6 @@
 import argparse
+from multiprocessing.sharedctypes import Value
+from turtle import title
 
 import torch
 from torchmetrics.functional.classification import accuracy
@@ -25,7 +27,15 @@ def main():
     cifar_dataload = datasets.CIFAR10.load_test_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)
     
     # Load Model
-    model = TestNet()
+    if model_name := args.title == 'testnet-cifar10' or 'aug-testnet-cifar10':
+        from src.models import TestNet
+        model = TestNet()
+    elif model_name == 'resnet18-cifar10' or 'aug-resnet18-cifar10':
+        from src.models import ResNet18
+        model = ResNet18()
+    else:
+        raise ValueError(f'{model_name} is not exist')
+    
     state_dict = torch.load(f'{args.checkpoints}/{args.title}.pth')
     model.load_state_dict(state_dict['model'])
     model = model.to(device)
