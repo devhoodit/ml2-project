@@ -12,7 +12,7 @@ class CIFAR10():
         ]
     )
     
-    classes = classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+    classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
     @staticmethod
     def load_cifar_10(root="./data", batch_size=4, shuffle=True, num_workers=2):
@@ -41,8 +41,6 @@ class CIFAR100():
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         ]
     )
-    
-    classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
     @staticmethod
     def load_cifar_100(root="./data", batch_size=4, shuffle=True, num_workers=2):
