@@ -13,7 +13,7 @@ from src.models import TestNet
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="resnet18 with cifar-10")
     utils.arg_setting(parser)
-    parser.add_argument("--title", default="summary1", type=str)
+    parser.add_argument("--title", default="testnet-cifar10", type=str)
     args = parser.parse_args()
     
     utils.device_env()
@@ -38,6 +38,7 @@ if __name__ == "__main__":
     metric_fn = accuracy
     
     # Loop
+    print("Running")
     for epoch in range(args.epochs):
         summary = train_summary1(cifar_dataload, model, optimizer, scheduler, loss_fn, metric_fn, device)
         print(f'Epoch: {epoch + 1}, Accuracy: {summary["metric"]:.4f}')

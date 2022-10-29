@@ -37,12 +37,13 @@ def device_env():
         print("CUDA is unavailable")
 
 def arg_setting(parser: argparse.ArgumentParser):
-    parser.add_argument("--lr", default=0.001, type=float, help="learning rate")
-    parser.add_argument("--epochs", default=200, type=int, help="epoch")
-    parser.add_argument("--checkpoints", default="./checkpoints", type=str, help="checkpoints dir")
-    parser.add_argument("--numworkers", default=2, type=int, help="num workers")
-    parser.add_argument("--data", default="./data", type=str, help="download and load data dir")
-    parser.add_argument("--device", default="auto", type=str, help="cpu or cuda if available")
+    import src.global_args_setting as GAS
+    parser.add_argument("--lr", default=GAS.LEARNING_RATE, type=float, help="learning rate")
+    parser.add_argument("--epochs", default=GAS.EPOCHS, type=int, help="epoch")
+    parser.add_argument("--checkpoints", default=GAS.CHECKPOINTS, type=str, help="checkpoints dir")
+    parser.add_argument("--numworkers", default=GAS.CHECKPOINTS, type=int, help="num workers")
+    parser.add_argument("--data", default=GAS.DATA, type=str, help="download and load data dir")
+    parser.add_argument("--device", default=GAS.DEVICE, type=str, help="cpu or cuda if available")
 
 def save_checkpoint(checkpoint_dir, title, model, optimizer, epoch):
     os.makedirs(checkpoint_dir, exist_ok=True)

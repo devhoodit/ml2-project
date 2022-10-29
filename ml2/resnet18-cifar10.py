@@ -14,7 +14,7 @@ from src.models import ResNet18
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="resnet18 with cifar-10")
     utils.arg_setting(parser)
-    parser.add_argument("--title", default="summary1", type=str)
+    parser.add_argument("--title", default="resnet18-cifar10", type=str)
     args = parser.parse_args()
     
     utils.device_env()
