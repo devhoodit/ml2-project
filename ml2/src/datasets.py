@@ -47,8 +47,8 @@ class CIFAR100():
     @staticmethod
     def load_cifar_100(root="./data", batch_size=4, shuffle=True, num_workers=2):
         
-        trainloader = CIFAR100.load_train_cifar_10(root=root, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
-        testloader = CIFAR100.load_test_cifar_10(root=root, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+        trainloader = CIFAR100.load_train_cifar_100(root=root, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+        testloader = CIFAR100.load_test_cifar_100(root=root, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
         
         return trainloader, testloader
 
@@ -67,3 +67,4 @@ class CIFAR100():
 
 if __name__ == "__main__":
     CIFAR10.load_cifar_10()
+    CIFAR100.load_cifar_100()
