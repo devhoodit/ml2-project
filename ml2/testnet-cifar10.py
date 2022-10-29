@@ -4,7 +4,7 @@ import torch.optim as optim
 import torch.nn as nn
 
 from torchmetrics.functional.classification import accuracy
-from src.engines import train_summary1
+from src.engines import Test
 
 from src import utils
 from src import datasets
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     # Loop
     print("Running")
     for epoch in range(args.epochs):
-        summary = train_summary1(cifar_dataload, model, optimizer, scheduler, loss_fn, metric_fn, device)
+        summary = Test.train(cifar_dataload, model, optimizer, scheduler, loss_fn, metric_fn, device)
         print(f'Epoch: {epoch + 1}, Accuracy: {summary["metric"]:.4f}')
         utils.save_checkpoint(args.checkpoints, args.title, model, optimizer, epoch + 1)
     
