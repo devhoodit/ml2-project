@@ -1,6 +1,10 @@
 import platform
 from torch import cuda
 
+def cuda_available():
+    if cuda.is_available(): return 'cuda:0'
+    else: return 'cpu'
+
 def device_env():
 
     print(f"Platform : {platform.system()}")
