@@ -1,1 +1,3 @@
 __pycache__
+ml2/data/*
+ml2/checkpoints/*
