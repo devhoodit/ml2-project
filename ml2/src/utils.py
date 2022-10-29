@@ -41,7 +41,7 @@ def arg_setting(parser: argparse.ArgumentParser):
     parser.add_argument("--lr", default=GAS.LEARNING_RATE, type=float, help="learning rate")
     parser.add_argument("--epochs", default=GAS.EPOCHS, type=int, help="epoch")
     parser.add_argument("--checkpoints", default=GAS.CHECKPOINTS, type=str, help="checkpoints dir")
-    parser.add_argument("--numworkers", default=GAS.CHECKPOINTS, type=int, help="num workers")
+    parser.add_argument("--numworkers", default=GAS.NUM_WORKERS, type=int, help="num workers")
     parser.add_argument("--data", default=GAS.DATA, type=str, help="download and load data dir")
     parser.add_argument("--device", default=GAS.DEVICE, type=str, help="cpu or cuda if available")
 
