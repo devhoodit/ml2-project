@@ -1,7 +1,7 @@
 # ml2-project
 
 
-This is a repository about the project of ML2 class, SEOULTECH😄.
+This is a repository for the project of ML2 class, SEOULTECH😄.
 
 
 # Environment Setting
