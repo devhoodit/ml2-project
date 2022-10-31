@@ -39,3 +39,20 @@ python testnet-cifar10.py --title aug-testnet-cifar10
 ```
 python resnet-cifar10.py
 ```
+
+# Evaluate
+
+### Move to ml2 dir
+```
+cd ml2
+```
+
+### TestNet-CIFAR10
+```
+python eval-cifar10.py --title testnet-cifar10
+```
+
+### TestNet-CIFAR10 with data augmentation
+```
+python eval-cifar10.py --title aug-testnet-cifar10
+```

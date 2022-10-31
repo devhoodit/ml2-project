@@ -2,13 +2,15 @@
 
 import torch
 import torchvision
-import torchvision.transforms as transforms
+import torchvision.transforms as T
+from torch.utils.data import Dataset
+import numpy as np
 
 class CIFAR10():
-    transform = transforms.Compose(
+    transform = T.Compose(
         [
-            transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+            T.ToTensor(),
+            T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         ]
     )
     
@@ -35,10 +37,10 @@ class CIFAR10():
         return testloader
 
 class CIFAR100():
-    transform = transforms.Compose(
+    transform = T.Compose(
         [
-            transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+            T.ToTensor(),
+            T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         ]
     )
 
@@ -62,7 +64,52 @@ class CIFAR100():
         testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
         return testloader
 
+class DataAugDataset(Dataset):
+    def __init__(self, root="./data") -> None:
+        dataset = torchvision.datasets.CIFAR10(root=root, train=True, download=True)
+        x = dataset.data[np.random.choice(dataset.data.shape[0], size=dataset.data.shape[0]//200)]
+        
+        transform = T.Compose(
+            [
+                T.ToTensor(),
+                T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+            ]
+        )
+        
+        self.x = list(map(transform, x))
+        self.y = np.zeros(len(dataset.data), dtype=np.int8)
+        
+        x = dataset.data[np.random.choice(dataset.data.shape[0], size=dataset.data.shape[0]//200)]
+
+        data_augmentation = T.Compose(
+            [
+                T.ToTensor(),
+                T.RandomErasing(p=0.7),
+                T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+            ]
+        )
+
+        x = list(map(data_augmentation, x))
+        y = np.ones(len(x), dtype=np.int8)
+        
+        self.x += x
+        self.y = np.concatenate((self.y, y), axis=None)
+        
+    def __len__(self):
+        return len(self.x)
+    
+    def __getitem__(self, idx):
+        return self.x[idx], torch.IntTensor([self.y[idx]])
+    
+
+class CIFAR10DataAug():
+    @staticmethod
+    def load_train(root="./data", batch_size=4, shuffle=True, num_workers=2):
+        trainset = DataAugDataset(root=root)
+        trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+        return trainloader
 
 if __name__ == "__main__":
-    CIFAR10.load_cifar_10()
-    CIFAR100.load_cifar_100()
+    # CIFAR10.load_cifar_10()
+    # CIFAR100.load_cifar_100()
+    CIFAR10DataAug.load_train()

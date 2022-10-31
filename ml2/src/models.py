@@ -114,8 +114,21 @@ class TestNetNN(nn.Module):
         x = self.fc3(x)
         return x
 
+class DataAugNetNN(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 60)
+        self.fc3 = nn.Linear(60, 2)
+
 def ResNet18():
     return ResNet(BasicBlock, [2, 2, 2, 2])
 
 def TestNet():
     return TestNetNN()
+
+def DataAugNet():
+    return DataAugNet()
