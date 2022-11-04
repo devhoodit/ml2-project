@@ -131,4 +131,4 @@ def TestNet():
     return TestNetNN()
 
 def DataAugNet():
-    return DataAugNet()
+    return DataAugNetNN()

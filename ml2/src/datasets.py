@@ -85,7 +85,7 @@ class DataAugDataset(Dataset):
         data_augmentation = T.Compose(
             [
                 T.ToPILImage(),
-                T.RandomVerticalFlip(p=1),
+                T.RandomErasing(p=1),
                 T.ToTensor(),
             ]
         )
