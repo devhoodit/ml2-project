@@ -40,7 +40,7 @@ def main():
         model = DataAugNet()
     elif model_name == 'dsnet-cifar10':
         from src.models import DSNet
-        model = DSNet(device, f"{args.checkpoints}/danet-cifar10.pth")
+        model = DSNet(device, f"{args.checkpoints}/da-cifar10.pth")
     else:
         raise ValueError(f'{model_name} is not exist')
     
