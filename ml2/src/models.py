@@ -155,17 +155,17 @@ class DSNetNN(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         
-        combine = torch.cat(x.view(x.size(0),-1), x2)
+        combine = torch.cat(x, x2)
         x = self.fc3(combine)
         return x
 
     def load_model(self):
         self.model = TestNet()
         state_dict = torch.load(self.dapath)
-        model.load_state_dict(state_dict['model'])
+        self.model.load_state_dict(state_dict['model'])
         self.model.eval()
         
-        model = model.to(self.device)
+        self.model = self.model.to(self.device)
 
 def ResNet18():
     return ResNet(BasicBlock, [2, 2, 2, 2])
