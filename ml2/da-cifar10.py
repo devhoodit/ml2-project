@@ -5,7 +5,7 @@ import torch.nn as nn
 
 from torchmetrics.functional.classification import accuracy
 from src.datasets import CIFAR10DataAug
-from src.engines import Test
+from src.engines import DACIFAR10
 
 from src import utils
 from src import datasets
@@ -41,7 +41,7 @@ def main():
     # Loop
     print("Running")
     for epoch in range(args.epochs):
-        summary = Test.train(cifar_dataload, model, optimizer, scheduler, loss_fn, metric_fn, device)
+        summary = DACIFAR10.train(cifar_dataload, model, optimizer, scheduler, loss_fn, metric_fn, device)
         print(f'Epoch: {epoch + 1}, Accuracy: {summary["metric"]:.4f}')
         utils.save_checkpoint(args.checkpoints, args.title, model, optimizer, epoch + 1)
     
