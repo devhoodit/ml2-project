@@ -155,7 +155,7 @@ class DSNetNN(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         
-        combine = torch.cat(x, x2)
+        combine = torch.cat((x, x2), dim=1)
         x = self.fc3(combine)
         return x
 
