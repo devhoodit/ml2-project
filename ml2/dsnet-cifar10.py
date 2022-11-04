@@ -5,9 +5,10 @@ import torch.nn as nn
 
 from torchmetrics.functional.classification import accuracy
 from src.engines import DS
+from torchvision import transforms as T
 
+from src.datasets import CIFAR10
 from src import utils
-from src import datasets
 from src.models import DSNet
 
 
@@ -24,7 +25,12 @@ def main():
     print(f"Torch running on {device}")
     
     # Load dataset with dataloader
-    cifar_dataload = datasets.CIFAR10.load_train_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)
+    CIFAR10.transform = T.Compose([
+                T.ToTensor(),
+                T.RandomErasing(p=0.3),
+                T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+    cifar_dataload = CIFAR10.load_train_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)
 
     
     # Build Model
