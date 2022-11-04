@@ -1,13 +1,9 @@
 import argparse
-from multiprocessing.sharedctypes import Value
-from turtle import title
 
 import torch
 from torchmetrics.functional.classification import accuracy
 import torch.nn as nn
 
-from src.models import TestNet
-from src.engines import Test
 from src import utils, datasets
 
 def main():
@@ -24,7 +20,10 @@ def main():
     print(f"Torch running on {device}")
     
     # Dataload
-    cifar_dataload = datasets.CIFAR10.load_test_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)
+    if model_name == "da-cifar10":
+        cifar_dataload = datasets.CIFAR10DataAug.load_test(root=args.data)
+    else:
+        cifar_dataload = datasets.CIFAR10.load_test_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)
     
     # Load Model
     if model_name := args.title == 'testnet-cifar10' or 'aug-testnet-cifar10':
@@ -33,6 +32,9 @@ def main():
     elif model_name == 'resnet18-cifar10' or 'aug-resnet18-cifar10':
         from src.models import ResNet18
         model = ResNet18()
+    elif model_name == 'da-cifar10':
+        from src.models import DataAugNet
+        model = DataAugNet()
     else:
         raise ValueError(f'{model_name} is not exist')
     
@@ -45,7 +47,15 @@ def main():
     metric_fn = accuracy
     
     # Evaluate
-    summary = Test.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
+    if model_name := args.title == 'testnet-cifar10' or 'aug-testnet-cifar10':
+        from src.engines import Test
+        summary = Test.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
+    elif model_name == 'resnet18-cifar10' or 'aug-resnet18-cifar10':
+        from src.engines import ResNet18CIFAR10
+        summary = ResNet18CIFAR10.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
+    elif model_name == 'da-cifar10':
+        from src.engines import DACIFAR10
+        summary = DACIFAR10.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
     acc = summary['metric']
 
     print(f'Model: {args.title} Accuracy: {acc}')

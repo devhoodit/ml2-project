@@ -65,8 +65,8 @@ class CIFAR100():
         return testloader
 
 class DataAugDataset(Dataset):
-    def __init__(self, root="./data") -> None:
-        dataset = torchvision.datasets.CIFAR10(root=root, train=True, download=True)
+    def __init__(self, root="./data", train=True) -> None:
+        dataset = torchvision.datasets.CIFAR10(root=root, train=train, download=True)
         dataset_size = len(dataset)
         x = dataset.data[np.random.choice(dataset_size, size=dataset_size)]
         
@@ -111,6 +111,11 @@ class CIFAR10DataAug():
         trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
         return trainloader
 
+    @staticmethod
+    def load_test(root="./data", batch_size=4, shuffle=True, num_workers=2):
+        trainset = DataAugDataset(root=root, train=False)
+        trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+        return trainloader
 if __name__ == "__main__":
     # CIFAR10.load_cifar_10()
     # CIFAR100.load_cifar_100()
