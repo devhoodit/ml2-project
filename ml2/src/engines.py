@@ -68,6 +68,9 @@ class ResNet18CIFAR10(DefaultTrainEvaluate):
 class Test(DefaultTrainEvaluate):
     pass
 
+class DS(DefaultTrainEvaluate):
+    pass
+
 class DACIFAR10:
     @staticmethod
     def train(loader, model, optimizer, scheduler, loss_fn, metric_fn, device):

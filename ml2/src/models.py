@@ -133,6 +133,40 @@ class DataAugNetNN(nn.Module):
         x = self.fc3(x)
         return x
 
+class DSNetNN(nn.Module):
+    def __init__(self, device, dapath) -> None:
+        super().__init__()
+        self.device = device
+        self.dapath = dapath
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 60)
+        self.fc3 = nn.Linear(62, 10)
+        self.load_model()
+    
+    def forward(self, x):
+        with torch.no_grad():
+            x2 = self.model(x)
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = torch.flatten(x, 1) # flatten all dimensions except batch
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        
+        combine = torch.cat(x.view(x.size(0),-1), x2)
+        x = self.fc3(combine)
+        return x
+
+    def load_model(self):
+        self.model = TestNet()
+        state_dict = torch.load(self.dapath)
+        model.load_state_dict(state_dict['model'])
+        self.model.eval()
+        
+        model = model.to(self.device)
+
 def ResNet18():
     return ResNet(BasicBlock, [2, 2, 2, 2])
 
@@ -141,3 +175,6 @@ def TestNet():
 
 def DataAugNet():
     return DataAugNetNN()
+
+def DSNet(device, dapath):
+    return DSNetNN(device, dapath)

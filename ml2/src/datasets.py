@@ -116,8 +116,9 @@ class CIFAR10DataAug():
         testset = DataAugDataset(root=root, train=False)
         testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
         return testloader
-        
+
 if __name__ == "__main__":
     # CIFAR10.load_cifar_10()
     # CIFAR100.load_cifar_100()
     CIFAR10DataAug.load_train()
+    
