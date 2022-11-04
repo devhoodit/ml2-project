@@ -50,7 +50,7 @@ def main():
     metric_fn = accuracy
     
     # Evaluate
-    if model_name := args.title == 'testnet-cifar10' or model_name == 'aug-testnet-cifar10':
+    if model_name == 'testnet-cifar10' or model_name == 'aug-testnet-cifar10':
         from src.engines import Test
         summary = Test.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
     elif model_name == 'resnet18-cifar10' or model_name == 'aug-resnet18-cifar10':
@@ -59,6 +59,8 @@ def main():
     elif model_name == 'da-cifar10':
         from src.engines import DACIFAR10
         summary = DACIFAR10.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
+    else:
+        raise ValueError(f'{model_name} is not exist')
     acc = summary['metric']
 
     print(f'Model: {args.title} Accuracy: {acc}')
