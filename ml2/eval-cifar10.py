@@ -20,6 +20,7 @@ def main():
     # base setting
     device = utils.device_setting(args.device)
     print(f"Torch running on {device}")
+    print(f"Model: {model_name}")
     
     # Dataload
     if model_name == "da-cifar10":
