@@ -15,7 +15,7 @@ def main():
     
     utils.device_env()
 
-    model_name == args.title
+    model_name = args.title
     
     # base setting
     device = utils.device_setting(args.device)
