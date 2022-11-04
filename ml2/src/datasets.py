@@ -73,6 +73,7 @@ class DataAugDataset(Dataset):
         transform = T.Compose(
             [
                 T.ToTensor(),
+                T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
             ]
         )
         
@@ -84,9 +85,9 @@ class DataAugDataset(Dataset):
 
         data_augmentation = T.Compose(
             [
-                T.ToPILImage(),
-                T.RandomErasing(p=1),
                 T.ToTensor(),
+                T.RandomErasing(p=1),
+                T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
             ]
         )
 
