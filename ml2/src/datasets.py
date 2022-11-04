@@ -67,25 +67,26 @@ class CIFAR100():
 class DataAugDataset(Dataset):
     def __init__(self, root="./data") -> None:
         dataset = torchvision.datasets.CIFAR10(root=root, train=True, download=True)
-        x = dataset.data[np.random.choice(dataset.data.shape[0], size=dataset.data.shape[0]//200)]
+        dataset_size = len(dataset)
+        x = dataset.data[np.random.choice(dataset_size, size=dataset_size)]
         
         transform = T.Compose(
             [
                 T.ToTensor(),
-                T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
             ]
         )
         
-        self.x = list(map(transform, x))
-        self.y = np.zeros(len(dataset.data), dtype=np.int8)
+        x = list(map(transform, x))
+        self.x = x
+        self.y = np.zeros(len(x), dtype=np.int8)
         
-        x = dataset.data[np.random.choice(dataset.data.shape[0], size=dataset.data.shape[0]//200)]
+        x = dataset.data[np.random.choice(dataset_size, size=dataset_size)]
 
         data_augmentation = T.Compose(
             [
+                T.ToPILImage(),
+                T.RandomVerticalFlip(p=1),
                 T.ToTensor(),
-                T.RandomErasing(p=0.7),
-                T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
             ]
         )
 

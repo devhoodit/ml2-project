@@ -18,6 +18,10 @@ conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit
 
 Set VSC default python interpreter as "ml2" python 3.9.10
 
+# Implementation
+- CIFAR10 Train
+- CIFAR10 Test
+
 # Run
 
 ### Move to ml2 dir
