@@ -29,10 +29,10 @@ def main():
         cifar_dataload = datasets.CIFAR10.load_test_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)
     
     # Load Model
-    if model_name == 'testnet-cifar10' or 'aug-testnet-cifar10':
+    if model_name == 'testnet-cifar10' or model_name == 'aug-testnet-cifar10':
         from src.models import TestNet
         model = TestNet()
-    elif model_name == 'resnet18-cifar10' or 'aug-resnet18-cifar10':
+    elif model_name == 'resnet18-cifar10' or model_name == 'aug-resnet18-cifar10':
         from src.models import ResNet18
         model = ResNet18()
     elif model_name == 'da-cifar10':
@@ -50,10 +50,10 @@ def main():
     metric_fn = accuracy
     
     # Evaluate
-    if model_name := args.title == 'testnet-cifar10' or 'aug-testnet-cifar10':
+    if model_name := args.title == 'testnet-cifar10' or model_name == 'aug-testnet-cifar10':
         from src.engines import Test
         summary = Test.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
-    elif model_name == 'resnet18-cifar10' or 'aug-resnet18-cifar10':
+    elif model_name == 'resnet18-cifar10' or model_name == 'aug-resnet18-cifar10':
         from src.engines import ResNet18CIFAR10
         summary = ResNet18CIFAR10.evaluate(cifar_dataload, model, loss_fn, metric_fn, device)
     elif model_name == 'da-cifar10':
