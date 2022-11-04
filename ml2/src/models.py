@@ -160,7 +160,7 @@ class DSNetNN(nn.Module):
         return x
 
     def load_model(self):
-        self.model = TestNet()
+        self.model = DataAugNet()
         state_dict = torch.load(self.dapath)
         self.model.load_state_dict(state_dict['model'])
         self.model.eval()
