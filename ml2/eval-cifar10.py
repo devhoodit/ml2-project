@@ -14,6 +14,8 @@ def main():
     args = parser.parse_args()
     
     utils.device_env()
+
+    model_name == args.title
     
     # base setting
     device = utils.device_setting(args.device)
@@ -26,7 +28,7 @@ def main():
         cifar_dataload = datasets.CIFAR10.load_test_cifar_10(root=args.data, batch_size=4, shuffle=True, num_workers=args.numworkers)
     
     # Load Model
-    if model_name := args.title == 'testnet-cifar10' or 'aug-testnet-cifar10':
+    if model_name == 'testnet-cifar10' or 'aug-testnet-cifar10':
         from src.models import TestNet
         model = TestNet()
     elif model_name == 'resnet18-cifar10' or 'aug-resnet18-cifar10':
