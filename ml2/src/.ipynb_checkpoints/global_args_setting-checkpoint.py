@@ -1,0 +1,6 @@
+LEARNING_RATE=0.001
+EPOCHS=100
+CHECKPOINTS='./checkpoints'
+NUM_WORKERS=2
+DATA='./data'
+DEVICE='auto'
