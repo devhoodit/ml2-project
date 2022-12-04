@@ -20,7 +20,7 @@ The used models are designed based on LeNet-5. Because it is one of the most bas
     
     ### Result
     
-    `{dataset}_weights_{BaseModel or DataAugmentingMethod}.ipynb`
+    `{dataset}_weights_{BaseModel or DataAugmentingMethod}.ipynb`  
     ex) MNIST, Base model → mnist_weights_BaseModel.pth
     
 2. Input one weight in turn and Attack the models
@@ -58,5 +58,5 @@ Downloading when first excutation In data/{dataset_name}
 ex) MNIST dataset, 5Net model → MNIST_5Net.ipynb
 
 ### **Model Performanace with Adversarial Attack**
-`{test_dataset_name}_{model}_aa.ipynb`
+`{test_dataset_name}_{model}_aa.ipynb`  
 ex) MNIST dataset, 5Net model → MNIST_5Net_aa.ipynb
