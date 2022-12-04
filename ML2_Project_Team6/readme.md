@@ -7,7 +7,7 @@
 
 ## Model
 
- The used models are designed based on LeNet-5. Because it is one of the most basic image classification model.
+The used models are designed based on LeNet-5. Because it is one of the most basic image classification model.
 
 ![LeNet-5](img/Lenet-5.png)
 
@@ -52,15 +52,14 @@ In `src/aa.py`
 Downloading when first excutation In data/{dataset_name}
 
 ## **Results**
+> ### **model performance**
+ 
+> `{test_dataset_name}_{model}.ipynb`
+    
+> ex) MNIST dataset, 5Net model → MNIST_5Net.ipynb
 
- ### **model performance**
+> ### **model performanace with adversarial attack**
 
- `{test_dataset_name}_{model}.ipynb`
+> `{test_dataset_name}_{model}_aa.ipynb`
 
- ex) MNIST dataset, 5Net model → MNIST_5Net.ipynb
-
- ### **model performanace with adversarial attack**
-
- `{test_dataset_name}_{model}_aa.ipynb`
-
- ex) MNIST dataset, 5Net model → MNIST_5Net_aa.ipynb
+> ex) MNIST dataset, 5Net model → MNIST_5Net_aa.ipynb
