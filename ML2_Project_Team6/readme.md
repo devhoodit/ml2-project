@@ -2,9 +2,8 @@
 
 There is an algorithm called Adversarial Attack(hereafter A.A.). It can generate data which is easily distinguishable from a human eye but not from deep learning models. In this project, we implement A.A. algorithm and measure effects for the image classification models. Moreover, we also measure the defensive performance of data augmentation(hereafter D.A.) methods and of more deeply designed models against A.A. Our experiments show that the most efficient defensive methods among D.A.s is Random Rotation. It is also confirmed that the deeper the layer of the model, the higher the defensive capability against A.A.
 
-# Data_aug
+# Defensive Performance by Data Augmentation Methods
 
----
 
 ## Model
 
@@ -32,10 +31,9 @@ There is an algorithm called Adversarial Attack(hereafter A.A.). It can generate
     model.load_state_dict(torch.load('cifar10_weights_GaussianBlur.pth'))
     ```
     
+  
+# Defensive Performance by Deep Layers
 
-# Deep_layers
-
----
 
 ## Model
 
