@@ -54,7 +54,10 @@ In `src/aa.py`
 
 Downloading when first excutation In data/{dataset_name}
 
-## **Results**
+## **Usage**
+
+You can just run a jupyter notebook file you want.
+
 ### **Model Performance**
  
 `{test_dataset_name}_{model}.ipynb`  
